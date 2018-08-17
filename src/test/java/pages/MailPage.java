@@ -42,12 +42,13 @@ public class MailPage {
         return this;
     }
 
-    public MailPage checkMailIsExist(String theme) {
+    public MailPage checkMailIsExist(String subject) {
         timeOut(2000);
-        Assert.assertTrue($(By.cssSelector("span[title ='" + theme + "']")).isDisplayed());
+        Assert.assertTrue($(By.cssSelector("span[title ='" + subject + "']")).isDisplayed());
         return this;
     }
 
+    //TODO VS add to new util class
     private void timeOut(int time) {
         try {
             Thread.sleep(time);
@@ -63,6 +64,22 @@ public class MailPage {
 
     public MailPage clickDelete() {
         $(byText("Удалить")).click();
+        return this;
+    }
+
+    public MailPage clickMarkButton() {
+        $(By.cssSelector("div[title='Метка (l)']")).click();
+        timeOut(2000);
+        return this;
+    }
+
+    public MailPage clickImportantMArkButton() {
+        $(By.cssSelector("a[data-params='lid=7']")).click();
+        return this;
+    }
+
+    public MailPage clickImportantMenuButton() {
+        $(By.className("mail-LabelList-Item_content")).click();
         return this;
     }
 }

@@ -1,8 +1,8 @@
 package functionality;
 
-import org.testng.annotations.AfterTest;
+import configuration.Runner;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import pages.base.Runner;
 
 import java.util.Date;
 
@@ -15,7 +15,7 @@ public class O1_sendEmail {
     private static final String WRITE_LOGIN = "writeropentester@yandex.ru";
     private static final String WRITER_PASSWORD = "open12345";
     private static final String TO_ADRESS = "writeropentester@yandex.ru";
-    private static final String THEME = "TestEmail" + new Date().getTime();
+    private static final String SUBJECT = "TestEmail" + new Date().getTime();
 
     @Test
     public void sendEmail() {
@@ -28,15 +28,15 @@ public class O1_sendEmail {
                 .checkPhoneNumberAskAndSkip()
                 .clickWriteMailButton()
                 .enterMailTo(TO_ADRESS)
-                .enterTheme(THEME)
+                .enterTheme(SUBJECT)
                 .clickSendButton()
                 .clickMenuSendedButton()
-                .checkMailIsExist(THEME)
+                .checkMailIsExist(SUBJECT)
                 .selectAllMails()
                 .clickDelete();
     }
 
-    @AfterTest
+    @AfterMethod
     public void setDown() {
         close();
     }

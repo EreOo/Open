@@ -1,4 +1,4 @@
-package pages.base;
+package configuration;
 
 import com.codeborne.selenide.Configuration;
 import pages.YandexPage;
