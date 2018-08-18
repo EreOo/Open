@@ -30,8 +30,6 @@ public class CreateXmlForRunInParallel implements IAlterSuiteListener {
     private static Map<String, String> getAllTestClasses(Set<Method> methodSet) {
         Map<String, String> classNameAndPathMap = new HashMap<>();
         for (Method testMethod : methodSet) {
-            List<String> groups = Arrays.asList(testMethod.getAnnotation(Test.class).groups());
-
             String classPath = testMethod.getDeclaringClass().getName();
             if (!classNameAndPathMap.containsValue(classPath)) {
                 classNameAndPathMap.put(testMethod.getName(), classPath);

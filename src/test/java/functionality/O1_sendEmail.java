@@ -17,7 +17,7 @@ public class O1_sendEmail {
     private MailPage mailPage;
     private static final String WRITE_LOGIN = "writeropentester@yandex.ru";
     private static final String WRITER_PASSWORD = "open12345";
-    private static final String TO_ADRESS = "writeropentester@yandex.ru";
+    private static final String TO_ADDRESS = "writeropentester@yandex.ru";
     private static final String SUBJECT = "TestEmail" + new Date().getTime();
 
     @BeforeMethod
@@ -33,7 +33,7 @@ public class O1_sendEmail {
     @Test
     public void sendEmail() {
         mailPage.clickWriteMailButton()
-                .enterMailTo(TO_ADRESS)
+                .enterMailTo(TO_ADDRESS)
                 .enterSubject(SUBJECT)
                 .clickSendButton()
                 .clickLeftMenuSendedButton()

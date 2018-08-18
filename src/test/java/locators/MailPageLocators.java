@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Selectors.byText;
 /**
  * Created Vladimir Shekhavtsov.
  */
-public class MailPageLocators {
+public final class MailPageLocators {
     public static final By WRITE_MAIL_BUTTON = By.className("mail-ComposeButton-Wrap>a");
     public static final By MAIL_TO_INPUT = By.name("to");
     public static final By SUBJECT_INPUT = By.cssSelector("label[data-key='view=compose-field-subject'] > div > input");
