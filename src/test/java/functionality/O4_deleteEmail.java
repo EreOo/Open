@@ -12,12 +12,12 @@ import static com.codeborne.selenide.Selenide.close;
 /**
  * Created Vladimir Shekhavtsov.
  */
-public class O3_findEmail {
-    private MailPage mailPage;
+public class O4_deleteEmail {
     private static final String WRITE_LOGIN = "writeropentester@yandex.ru";
     private static final String READER_LOGIN = "readeropentester@yandex.ru";
     private static final String PASSWORD = "open12345";
-    private static final String SUBJECT = "EmailToFind";
+    private static final String SUBJECT = "EmailToDelete";
+    private MailPage mailPage;
 
     @BeforeMethod
     public void setUp() {
@@ -31,16 +31,15 @@ public class O3_findEmail {
     }
 
     @Test
-    public void findEmail() {
-        mailPage.enterSearchQueryAndFind(SUBJECT)
-                .checkMessagesSearchInfoTitle()
-                .checkMailIsExist(SUBJECT);
+    public void deleteEmail() {
+        mailPage.checkMailIsExist(SUBJECT)
+                .selectAllMails()
+                .clickDelete()
+                .checkNoEmailsText();
     }
 
     @AfterMethod
     public void setDown() {
-        mailPage.selectAllMails()
-                .clickDelete();
         close();
     }
 }

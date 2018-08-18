@@ -13,11 +13,11 @@ import static com.codeborne.selenide.Selenide.close;
  * Created Vladimir Shekhavtsov.
  */
 public class O2_addToImportant {
+    private MailPage mailPage;
     private static final String WRITE_LOGIN = "writeropentester@yandex.ru";
     private static final String READER_LOGIN = "readeropentester@yandex.ru";
     private static final String PASSWORD = "open12345";
     private static final String SUBJECT = "EmailToFavorite";
-    private MailPage mailPage;
 
     @BeforeMethod
     public void setUp() {

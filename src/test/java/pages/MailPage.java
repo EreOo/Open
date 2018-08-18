@@ -94,4 +94,9 @@ public class MailPage {
         $(By.className("mail-MessagesSearchInfo-Title")).shouldBe(Condition.visible);
         return this;
     }
+
+    public MailPage checkNoEmailsText() {
+        $(By.className("b-messages__placeholder-item")).shouldHave(Condition.text("В папке «Входящие» нет писем."));
+        return this;
+    }
 }
