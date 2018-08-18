@@ -2,12 +2,11 @@ package pages;
 
 
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static locators.YandexPageLocators.*;
 
 /**
  * Created Vladimir Shekhavtsov.
@@ -15,26 +14,26 @@ import static com.codeborne.selenide.Selenide.$$;
 public class YandexPage {
 
     public YandexPage clickEnterInEmailButton() {
-        $(By.linkText("Войти в почту")).click();
+        $(ENTER_IN_EMAIL_BUTTON).click();
         return this;
     }
 
     public YandexPage enterLogin(String writeLogin) {
-        SelenideElement element = $(By.name("login"));
+        SelenideElement element = $(LOGIN);
         element.clear();
         element.setValue(writeLogin);
         return this;
     }
 
     public YandexPage enterPassword(String writerPassword) {
-        SelenideElement element = $(By.name("passwd"));
+        SelenideElement element = $(PASSWORD);
         element.clear();
         element.setValue(writerPassword);
         return this;
     }
 
     public YandexPage clickConfirmButton() {
-        $(By.cssSelector("button[type = 'submit']")).click();
+        $(CONFIRM_BUTTON).click();
         return new YandexPage();
     }
 
@@ -46,9 +45,9 @@ public class YandexPage {
      */
     public MailPage checkPhoneNumberAskAndSkip() {
         try {
-            SelenideElement element = $(byText("Привяжите номер телефона"));
+            SelenideElement element = $(PHONE_NUMBER_ALERT_TITLE);
             if (element.exists()) {
-                $$(By.tagName("button")).get(1).click();
+                $$(BUTTON).get(1).click();
             }
         } catch (NoSuchElementException e) {
             // ignored.

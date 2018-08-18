@@ -34,9 +34,9 @@ public class O1_sendEmail {
     public void sendEmail() {
         mailPage.clickWriteMailButton()
                 .enterMailTo(TO_ADRESS)
-                .enterTheme(SUBJECT)
+                .enterSubject(SUBJECT)
                 .clickSendButton()
-                .clickMenuSendedButton()
+                .clickLeftMenuSendedButton()
                 .checkMailIsExist(SUBJECT);
 
     }

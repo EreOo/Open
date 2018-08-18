@@ -7,6 +7,7 @@ import java.util.Properties;
 
 /**
  * Created Vladimir Shekhavtsov.
+ * Simple email sender.
  */
 public class EmailSender {
 

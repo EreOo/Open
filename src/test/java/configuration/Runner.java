@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 /**
  * Created Vladimir Shekhavtsov.
+ * All setting hide there.
  */
 public class Runner {
     private static final String URL_SITE = "https://yandex.ru/";
