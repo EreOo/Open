@@ -18,8 +18,11 @@ public class Runner {
         return new YandexPage();
     }
 
+    // Get properties from pom.xml (profiles)
     private void selectChrome() {
-        Configuration.browser = "chrome";
+        Configuration.browser = System.getProperty("browser");
+        //  Uncomment for use selenium grid or selenoid.
+        //  Configuration.remote = System.getProperty("hub");
     }
 
 }
