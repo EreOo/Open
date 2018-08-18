@@ -5,40 +5,38 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.MailPage;
-
-import java.util.Date;
+import util.EmailSender;
 
 import static com.codeborne.selenide.Selenide.close;
 
 /**
  * Created Vladimir Shekhavtsov.
  */
-public class O1_sendEmail {
+public class O2_addToImportant {
     private MailPage mailPage;
     private static final String WRITE_LOGIN = "writeropentester@yandex.ru";
-    private static final String WRITER_PASSWORD = "open12345";
-    private static final String TO_ADDRESS = "writeropentester@yandex.ru";
-    private static final String SUBJECT = "TestEmail" + new Date().getTime();
+    private static final String READER_LOGIN = "readeropentester@yandex.ru";
+    private static final String PASSWORD = "open12345";
+    private static final String SUBJECT = "EmailToFavorite";
 
     @BeforeMethod
     public void setUp() {
+        new EmailSender().send(WRITE_LOGIN, PASSWORD, READER_LOGIN, SUBJECT, "");
         mailPage = new Runner().openSite()
                 .clickEnterInEmailButton()
-                .enterLogin(WRITE_LOGIN)
-                .enterPassword(WRITER_PASSWORD)
+                .enterLogin(READER_LOGIN)
+                .enterPassword(PASSWORD)
                 .clickConfirmButton()
                 .checkPhoneNumberAskAndSkip();
     }
 
     @Test
-    public void sendEmail() {
-        mailPage.clickWriteMailButton()
-                .enterMailTo(TO_ADDRESS)
-                .enterSubject(SUBJECT)
-                .clickSendButton()
-                .clickLeftMenuSendedButton()
+    public void addFavorite() {
+        mailPage.selectAllMails()
+                .clickMarkButton()
+                .clickImportantMarkButton()
+                .clickImportantLeftMenuButton()
                 .checkMailIsExist(SUBJECT);
-
     }
 
     @AfterMethod

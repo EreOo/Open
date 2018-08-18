@@ -8,6 +8,24 @@
     <artifactId>Open</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <!--Default properties-->
+    <properties>
+        <browser>chrome</browser>
+        <thread>1</thread>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>Chrome</id>
+            <properties>
+                <browser>chrome</browser>
+                <!--uncomment for use selenium grid or selenoid  -->
+                <!--<hub>http://192.168.1.155:4444/wd/hub</hub>-->
+                <thread>1</thread>
+            </properties>
+        </profile>
+    </profiles>
+
     <dependencies>
         <dependency>
             <groupId>org.testng</groupId>
@@ -22,6 +40,53 @@
             <version>4.9.1</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4</version>
+        </dependency>
+
+        <!--Need for create XML listener-->
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.9.11</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>guava</artifactId>
+                    <groupId>com.google.guava</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
     </dependencies>
+
+    <!--Plugin set custom properties-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.16</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <browser>${browser}</browser>
+                        <hub>${hub}</hub>
+                        <thread>${thread}</thread>
+                        <buildDirectory>${project.build.directory}</buildDirectory>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
