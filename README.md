@@ -17,7 +17,7 @@ For parallel runs please use other tests yandex account for each test!!! Or run 
 
 ------------------------------------------------------<br/>
 ##### WARNING
-If you use Windows chrome could make zombie process!<br/>
+If you use Windows, chrome could make zombie process!<br/>
 Use after run next command: taskkill /F /IM chrome.exe /T  <br/>
 It kill all chrome process!<br/>
 For UNIX it's not problem.<br/>
