@@ -1,8 +1,9 @@
 package pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
-import org.testng.Assert;
+import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
@@ -44,7 +45,8 @@ public class MailPage {
 
     public MailPage checkMailIsExist(String subject) {
         timeOut(2000);
-        Assert.assertTrue($(By.cssSelector("span[title ='" + subject + "']")).isDisplayed());
+//        Assert.assertTrue($(By.cssSelector("span[title ='" + subject + "']")).isDisplayed());
+        $(By.cssSelector("span[title ='" + subject + "']")).shouldBe(Condition.visible);
         return this;
     }
 
@@ -73,13 +75,23 @@ public class MailPage {
         return this;
     }
 
-    public MailPage clickImportantMArkButton() {
+    public MailPage clickImportantMarkButton() {
         $(By.cssSelector("a[data-params='lid=7']")).click();
         return this;
     }
 
-    public MailPage clickImportantMenuButton() {
+    public MailPage clickImportantLeftMenuButton() {
         $(By.className("mail-LabelList-Item_content")).click();
+        return this;
+    }
+
+    public MailPage enterSearchQueryAndFind(String subject) {
+        $(By.tagName("input")).setValue(subject).sendKeys(Keys.ENTER);
+        return this;
+    }
+
+    public MailPage checkMessagesSearchInfoTitle() {
+        $(By.className("mail-MessagesSearchInfo-Title")).shouldBe(Condition.visible);
         return this;
     }
 }
